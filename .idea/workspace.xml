@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1023e43f-9ba2-4131-b97e-d93b48c08c41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/School Nurse.iml" afterPath="$PROJECT_DIR$/School Nurse.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roster/com/stc/roster/api/example.java" afterPath="$PROJECT_DIR$/src/roster/com/stc/roster/api/example.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -440,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496166161318</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updated API boilerplate">
+      <created>1496166646303</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1496166646303</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -481,7 +485,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updated UI boilerplate" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated UI boilerplate" />
+    <MESSAGE value="updated API boilerplate" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated API boilerplate" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
