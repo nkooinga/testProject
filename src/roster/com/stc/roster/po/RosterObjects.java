@@ -1,4 +1,4 @@
-package com.stc.roster.ui.po;
+package com.stc.roster.po;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
