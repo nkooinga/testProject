@@ -27,6 +27,42 @@ public class rosterListTest extends rosterList {
                 .headers();
 
     }
+
+    @Test
+    public void accessRosterWithoutSchoolSelection() {
+        given()
+                .param(/*ROSTERURI*/)
+        .when()
+                .get()
+        .then()
+                .log()
+                .body();
+    }
+
+    @Test
+    public void accessRosterasSDCwithoutSchoolSeleciton() {
+        given()
+                .param(/*ROSTERURI*/)
+                .param(/*SDCPARAMS*/)
+        .when()
+                .get()
+        .then()
+                .log()
+                .body("/list");
+    }
+
+    @Test
+    public void accessRosterasSDCwithSchoolSelection() {
+        given()
+                .param(/*ROSTERURI*/)
+                .param(/*SDCPARAMS*/)
+        .when()
+                .get()
+        .then()
+                .log()
+                .body("/list");
+    }
+
 //Tests for IWEBMODERN-7
     @Test()
     public void getSchoolRoster() {
