@@ -1,10 +1,19 @@
 package com.stc.functionaltests.roster.api;
 
+import com.stc.roster.api.RosterDownloadUpload;
 import com.stc.roster.api.rosterList;
 import io.restassured.http.ContentType;
+import io.restassured.mapper.ObjectMapper;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.testng.annotations.*;
 
+import java.io.File;
+
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasItems;
 
@@ -88,7 +97,7 @@ public class rosterListTest extends rosterList {
                 .log()
                 .body();
     }
-    //School Distrue Client Test
+    //School District Client Test
     @Test
     public void districtUserSchoolsView() {
         given()
@@ -99,6 +108,7 @@ public class rosterListTest extends rosterList {
                 .log()
                 .body("schools.list", hasItems("schools"));
     }
+
     //Nurse switching grades of patients
     @Test
     public void nurseGradeChange() {
@@ -116,5 +126,58 @@ public class rosterListTest extends rosterList {
 
 
     }
+
+//    Tests for IWEBMODERN-16
+    @BeforeMethod
+    public void rosterDownloadCheck() {
+        File rosterDownload = new File(System.getProperty("/*Download Directory Location*/") + File.separator + "/*File name*/");
+
+        int expectedSize = (int) rosterDownload.length();
+
+        System.out.println("Expected file size: " + expectedSize + " bytes")
+    }
+    @Test
+    public void rosterTemplateDownload() {
+
+        byte[] actualValue = given()
+            .when()
+                .get(/*DOWNLOADURL*/)
+            .then()
+                .extract()
+                .asByteArray();
+
+        assertThat(expectedSize, equalTo(actualValue.length));
+
+    }
+
+    @Test
+    public void rosterUpload() {
+        given()
+                .multiPart("Roster Upload File")
+        .when()
+                .post("/fileUploadPath")
+        .then()
+                .body("fileUploadResult", equalTo("OK"))
+                .log()
+                .status()
+                .statuscode(302);
+
+    }
+    @BeforeMethod
+    public void rosterUnamtchedDownloadCheck() {
+        File unmatchedCheck = new File(System.getProperty("/*Download Directory Location*/")  + File.separator + "/*File name*/");
+
+        int expectedSize
+    }
+
+    @Test
+    public void unmatchedDownload() {
+        given()
+                .param(/*Unmatched Students Parameters*/)
+        .when()
+                .get("/unmatchedDownload")
+        .then()
+    }
+
 
 }
