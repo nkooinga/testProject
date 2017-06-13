@@ -4,18 +4,20 @@ import com.stc.roster.api.RosterDownloadUpload;
 import com.stc.roster.api.rosterList;
 import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapper;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.testng.annotations.*;
 
 import java.io.File;
 
-import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
+import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasToString;
 
 /**
  * Created by nkooinga on 6/5/2017.
@@ -66,25 +68,88 @@ public class rosterListTest extends rosterList {
                 .param(/*ROSTERURI*/)
                 .param(/*SDCPARAMS*/)
         .when()
-                .get()
+                .get("/roster")
         .then()
                 .log()
-                .body("/list");
+                .body("rosterList.list");
     }
 
-//Tests for IWEBMODERN-7
+//Tests for IWEBMODERN-6, IWEBMODERN-7
     @Test()
     public void getSchoolRoster() {
         given()
                 .param(/*schoolSpecificRoster*/)
                 .param(/*schoolNurse*/)
         .when()
-                .get("/com/stc/integrationtests/roster/api/list")
+                .get("/roster")
         .then()
-                .body("rosterList.list", hasItems("schoolName","schoolAddress", "firstName","lastName","grade","patientAddress","patientDOB","patientGuardian","patientForecast"))
+                .body("rosterList.count", equalTo(/*Number of kids in roster*/))
+                .body("rosterList.list", hasItems("schoolName","schoolAddress", "schoolPhone","schoolDistrict","firstName","lastName","grade","patientAddress","patientDOB","patientGuardian","patientForecast"))
 
 
     }
+
+    @Test
+    public void searchSchoolRoster() {
+        given()
+                .param(/*studentParameters*/)
+                .param(/*schoolBurse*/)
+        .when()
+                .get("/roster/search")
+        .then()
+                .body("rosterList.list", hasItems("firstName", "alstName", "grade", "PatientAddress", " patientDOB", "patientGuardian", "patientForecast"))
+                .statusCode(200);
+    }
+
+    @Test
+    public void linkStudentDemo() {
+        given()
+                .param(/*studentParameters*/)
+        .when()
+                .get("/studentDemographics")
+        .then()
+                .log()
+                .body()
+                .statusCode(200);
+    }
+
+    @Test
+    public void linkStudentVacc() {
+        given()
+                .param(/*studentParameters*/)
+        .when()
+                .get("/studentVaccinations")
+        .then()
+                .log()
+                .body()
+                .statusCode(200);
+    }
+
+    @Test
+    public void linkStudentCIS() {
+        given()
+                .param(/*studentParameters*/)
+        .when()
+                .get("/studentForm")
+        .then()
+                .log()
+                .body()
+                .statusCode(200);
+    }
+
+    @Test
+    public void updateStudentGrade() {
+        given()
+                .contentType(ContentType.JSON)
+        .when()
+                .body(.param(/*studentParameters*/))
+                .patch()
+        .then()
+                .log()
+                .body(hasItem(/*NewGradeLevel*/));
+    }
+
+
     //Nurse should not be able to select school
     @Test
     public void nurseSchoolSearch() {

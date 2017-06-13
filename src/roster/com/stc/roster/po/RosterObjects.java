@@ -20,33 +20,37 @@ public class RosterObjects {
     }
 
     @FindBy(linkText = "demo")
-    WebElement demoPage;
+    private WebElement demoPage;
 
-    public WebElement demoPage() {
-            return this.demoPage;
+    private WebElement demoPage() {
+        return this.demoPage;
     }
 
     @FindBy(linkText = "vaccination")
-    WebElement vaccSummaryPage;
+    private WebElement vaccSummaryPage;
 
-    public WebElement vaccSummaryPage() {
-            return this.vaccSummaryPage;
-
+    private WebElement vaccSummaryPage() {
+        return this.vaccSummaryPage;
     }
 
     @FindBy(linkText = "form")
-    WebElement cisForm;
+    private WebElement cisForm;
 
-    public WebElement cisForm() {
+    private WebElement cisForm() {
         return this.cisForm;
     }
 
     @FindBy(id = "grade")
-    WebElement gradeLevel;
+    private WebElement gradeLevel;
 
-    public WebElement gradeLevel() {
+    private WebElement gradeLevel() {
         return this.gradeLevel;
     }
 
+    @FindBy(id = "forecastStatus")
+    private WebElement forecastStatus;
 
+    private WebElement forecastStatus() {
+        this.forecastStatus = forecastStatus;
+    }
 }
