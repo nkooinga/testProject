@@ -83,6 +83,7 @@ public class rosterListTest extends rosterList {
         .when()
                 .get("/roster")
         .then()
+                .assertThat()
                 .body("rosterList.count", equalTo(/*Number of kids in roster*/))
                 .body("rosterList.list", hasItems("schoolName","schoolAddress", "schoolPhone","schoolDistrict","firstName","lastName","grade","patientAddress","patientDOB","patientGuardian","patientForecast"))
 
@@ -97,6 +98,7 @@ public class rosterListTest extends rosterList {
         .when()
                 .get("/roster/search")
         .then()
+                .assertThat()
                 .body("rosterList.list", hasItems("firstName", "alstName", "grade", "PatientAddress", " patientDOB", "patientGuardian", "patientForecast"))
                 .statusCode(200);
     }
@@ -110,6 +112,7 @@ public class rosterListTest extends rosterList {
         .then()
                 .log()
                 .body()
+                .assertThat()
                 .statusCode(200);
     }
 
@@ -177,6 +180,8 @@ public class rosterListTest extends rosterList {
     //Nurse switching grades of patients
     @Test
     public void nurseGradeChange() {
+
+
         given()
                 .contentType(ContentType.JSON)
                 .param(/*Nurse Param*/)
@@ -185,8 +190,8 @@ public class rosterListTest extends rosterList {
                 .body(/*studentVarCall*/)
                 .post()
         .then()
+                .assertThat()
                 .statusCode(201)
-                .log()
                 .body(contains(/*studentVarCall*/));
 
 
