@@ -22,9 +22,14 @@ public class RosterUI extends RosterObjects() {
 //  Get forecast status
     @Test
     public void getForecastStatus(){
-        RosterObjects ro=new RosterObjects(driver);
+        RosterObjects ro = new RosterObjects(driver);
 //  Need to create endpoint variable once it is available.
-        ro.forecastStatus().
+        if(ro.forecastStatus()!= null){
+        System.out.println("Status is present: "  + ro.forecastStatus);
+        } else {
+            System.out.println("Status is NOT present")
+        }
+
 
         }
 
