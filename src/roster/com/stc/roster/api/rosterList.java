@@ -22,6 +22,16 @@ public class rosterList {
 
     private String firstName;
 
+    private String lastName;
+
+    private String patientAddress;
+
+    private String patientDOB;
+
+    private String patientGuardian;
+
+    private String patientForecast;
+
     public String getSchoolName() {
         return schoolName;
     }
@@ -86,14 +96,6 @@ public class rosterList {
         this.patientForecast = patientForecast;
     }
 
-    private String lastName;
 
-    private String patientAddress;
-
-    private String patientDOB;
-
-    private String patientGuardian;
-
-    private String patientForecast;
 
 }

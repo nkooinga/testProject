@@ -11,6 +11,7 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
  * Created by nkooinga on 5/30/2017.
  */
 public class RosterObjects {
+    private final WebDriver driver;
 
     WebDriver driver;
     public RosterObjects (WebDriver driver) {
@@ -52,5 +53,7 @@ public class RosterObjects {
 
     private WebElement forecastStatus() {
         this.forecastStatus = forecastStatus;
+    }
+
     }
 }

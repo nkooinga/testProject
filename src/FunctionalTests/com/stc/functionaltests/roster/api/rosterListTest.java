@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.hasToString;
  * Created by nkooinga on 6/5/2017.
  */
 public class rosterListTest extends rosterList {
-//Test for IWEBMODERN-5
+//Test for IWEBMODERN-116
     @BeforeSuite
     public void accessRosterPage() {
         given()
@@ -74,7 +74,7 @@ public class rosterListTest extends rosterList {
                 .body("rosterList.list");
     }
 
-//Tests for IWEBMODERN-6, IWEBMODERN-7
+//Tests for IWEBMODERN-116
     @Test()
     public void getSchoolRoster() {
         given()
@@ -83,6 +83,7 @@ public class rosterListTest extends rosterList {
         .when()
                 .get("/roster")
         .then()
+                .assertThat()
                 .body("rosterList.count", equalTo(/*Number of kids in roster*/))
                 .body("rosterList.list", hasItems("schoolName","schoolAddress", "schoolPhone","schoolDistrict","firstName","lastName","grade","patientAddress","patientDOB","patientGuardian","patientForecast"))
 
@@ -93,14 +94,15 @@ public class rosterListTest extends rosterList {
     public void searchSchoolRoster() {
         given()
                 .param(/*studentParameters*/)
-                .param(/*schoolBurse*/)
+                .param(/*schoolNurse*/)
         .when()
                 .get("/roster/search")
         .then()
+                .assertThat()
                 .body("rosterList.list", hasItems("firstName", "alstName", "grade", "PatientAddress", " patientDOB", "patientGuardian", "patientForecast"))
                 .statusCode(200);
     }
-
+//Tests for IWEBMODERN-117
     @Test
     public void linkStudentDemo() {
         given()
@@ -110,6 +112,7 @@ public class rosterListTest extends rosterList {
         .then()
                 .log()
                 .body()
+                .assertThat()
                 .statusCode(200);
     }
 
@@ -149,7 +152,7 @@ public class rosterListTest extends rosterList {
                 .body(hasItem(/*NewGradeLevel*/));
     }
 
-
+//Tests for IWEBMDOERN-121
     //Nurse should not be able to select school
     @Test
     public void nurseSchoolSearch() {
@@ -157,10 +160,10 @@ public class rosterListTest extends rosterList {
                 .param(/*SchoolNurseCreds*/)
                 .param(/*SchoolSelection*/)
         .when()
-                .post()
+                .get()
         .then()
-                .log()
-                .body();
+                .assertThat()
+                .statusCode(504);
     }
     //School District Client Test
     @Test
@@ -177,6 +180,8 @@ public class rosterListTest extends rosterList {
     //Nurse switching grades of patients
     @Test
     public void nurseGradeChange() {
+
+
         given()
                 .contentType(ContentType.JSON)
                 .param(/*Nurse Param*/)
@@ -185,21 +190,21 @@ public class rosterListTest extends rosterList {
                 .body(/*studentVarCall*/)
                 .post()
         .then()
+                .assertThat()
                 .statusCode(201)
-                .log()
                 .body(contains(/*studentVarCall*/));
 
 
     }
 
-//    Tests for IWEBMODERN-16
+//Tests for IWEBMODERN-122
     @BeforeMethod
     public void rosterDownloadCheck() {
         File rosterDownload = new File(System.getProperty("/*Download Directory Location*/") + File.separator + "/*File name*/");
 
         int expectedSize = (int) rosterDownload.length();
 
-        System.out.println("Expected file size: " + expectedSize + " bytes")
+        System.out.println("Expected file size: " + expectedSize + " bytes");
     }
     @Test
     public void rosterTemplateDownload() {
@@ -215,24 +220,13 @@ public class rosterListTest extends rosterList {
 
     }
 
-    @Test
-    public void rosterUpload() {
-        given()
-                .multiPart("Roster Upload File")
-        .when()
-                .post("/fileUploadPath")
-        .then()
-                .body("fileUploadResult", equalTo("OK"))
-                .log()
-                .status()
-                .statuscode(302);
-
-    }
     @BeforeMethod
-    public void rosterUnamtchedDownloadCheck() {
+    public void rosterUnmatchedDownloadCheck() {
         File unmatchedCheck = new File(System.getProperty("/*Download Directory Location*/")  + File.separator + "/*File name*/");
 
-        int expectedSize
+        int expectedSize = (int) unmatchedCheck.length();
+
+        System.out.println("Unmatched Download size is: " + expectedSize + " bytes");
     }
 
     @Test
@@ -244,5 +238,18 @@ public class rosterListTest extends rosterList {
         .then()
     }
 
+//Tests for IWEBMODERN-16
+    @Test
+    public void rosterUpload() {
+        given()
+                .multiPart("Roster Upload File")
+        .when()
+                .post("/fileUploadPath")
+        .then()
+                .assertThat()
+                .body("fileUploadResult", equalTo("OK"))
+                .statuscode(302);
+
+    }
 
 }
