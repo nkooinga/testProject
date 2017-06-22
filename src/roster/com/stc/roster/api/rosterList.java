@@ -1,8 +1,6 @@
 package com.stc.roster.api;
 
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import org.omg.CORBA.PRIVATE_MEMBER;
 
 /**
  * Created by nkooi on 5/27/2017.
@@ -32,7 +30,7 @@ public class rosterList {
 
     private String patientForecast;
 
-    public String getSchoolName() {
+    public getSchoolName() {
         return schoolName;
     }
 

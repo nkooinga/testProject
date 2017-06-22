@@ -1,34 +1,39 @@
 package com.stc.functionaltests.roster.api;
 
-import com.stc.roster.api.RosterDownloadUpload;
+import com.stc.roster.api.Payload;
 import com.stc.roster.api.rosterList;
 import io.restassured.http.ContentType;
-import io.restassured.mapper.ObjectMapper;
-import org.omg.CORBA.PUBLIC_MEMBER;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-import org.testng.annotations.*;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Properties;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.patch;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasItems;
-import static org.hamcrest.Matchers.hasToString;
 
 /**
  * Created by nkooinga on 6/5/2017.
  */
-public class rosterListTest extends rosterList {
+public class RosterPaginationTest extends rosterList {
+
+    InputStream apiProps = getClass().getResourceAsStream("com.stc.roster/properties/apienv.properties");
+    Properties prop = new Properties();
+    prop.load(apiProps);
+
 //Test for IWEBMODERN-116
     @BeforeSuite
     public void accessRosterPage() {
-        Properties prop = new Properties();
-        prop.get("HOST")
+
+        prop.getProperty("HOST");
         given()
                 .param(/*ROSTERURI*/)
                 .param(/*schoolNurseSelection*/)
@@ -40,6 +45,46 @@ public class rosterListTest extends rosterList {
                 .log()
                 .headers();
 
+    }
+//Tests for IWEBMODERN-80
+    @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
+    public void happyRosterPageValues(String pageNum, String pageValues) {
+        given()
+                .queryParam("page", pageNum)
+                .queryParam("valuesPerPage", pageValues)
+        .when()
+                .get()
+        .then()
+                .assertThat()
+                .body("currentPage", equalTo(pageNum)).and().body("valuesPerPage",equalTo(pageValues))
+                .and().statusCode(200)
+                .and()
+                .log()
+                .body("totalValues");
+    }
+
+    @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
+    public void negRosterPageValues(String pageNum, String pageValues) {
+        given()
+                .queryParam("page", pageNum)
+                .queryParam("valuesPerPage", pageValues)
+        .when()
+                .get()
+        .then()
+                .assertThat()
+                .body("currentPage", equalTo(pageNum)).and().body("valuesPerPage",equalTo(pageValues));
+    }
+
+    @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
+    public void invRosterPageValues(String pageNum, String pageValues) {
+        given()
+                .queryParam("page", pageNum)
+                .queryParam("valuesPerPage", pageValues)
+        .when()
+                .get()
+        .then()
+                .log()
+                .body();
     }
 
     @Test
@@ -95,15 +140,44 @@ public class rosterListTest extends rosterList {
 
     @Test
     public void searchSchoolRoster() {
-        given()
-                .param(/*studentParameters*/)
-                .param(/*schoolNurse*/)
+
+        Response studentSearchResponse = given()
+                .queryParam(/*studentParameters*/)
         .when()
                 .get("/roster/search")
         .then()
                 .assertThat()
-                .body("rosterList.list", hasItems("firstName", "alstName", "grade", "PatientAddress", " patientDOB", "patientGuardian", "patientForecast"))
+                .body("rosterList.list", hasItems("firstName", "lastName", "grade", "PatientAddress", " patientDOB", "patientGuardian", "patientForecast"))
                 .statusCode(200);
+    }
+
+    @Test
+    public void updateStudentInformation() {
+
+        Response studentSearchResponse = given()
+                .queryParam(/*studentParameters*/)
+        .when()
+                .get("/roster/search")
+        .then()
+                .assertThat()
+                .body("rosterList.list", hasItems("firstName", "lastName", "grade", "PatientAddress", " patientDOB", "patientGuardian", "patientForecast"))
+                .statusCode(200)
+                .extract()
+                .response();
+
+        ArrayList<String> studentSearchArray = new studentSearchResponse.asString();
+
+
+        String studentSearchString;
+        studentSearchString = studentSearchResponse.asString();
+        System.out.println(studentSearchString);
+        JsonPath js = new JsonPath(studentSearchString);
+        String studentInformation = js.get("STUDENT INFORMATION");
+        System.out.println(studentInformation);
+
+        given()
+                .queryParam("STUDENT to update")
+                .body(studentInformation)
     }
 //Tests for IWEBMODERN-117
     @Test
