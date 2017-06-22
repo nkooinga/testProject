@@ -9,6 +9,7 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.testng.annotations.*;
 
 import java.io.File;
+import java.util.Properties;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -26,6 +27,8 @@ public class rosterListTest extends rosterList {
 //Test for IWEBMODERN-116
     @BeforeSuite
     public void accessRosterPage() {
+        Properties prop = new Properties();
+        prop.get("HOST")
         given()
                 .param(/*ROSTERURI*/)
                 .param(/*schoolNurseSelection*/)
