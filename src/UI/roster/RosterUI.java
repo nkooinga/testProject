@@ -1,4 +1,4 @@
-package com.stc.functionaltests.roster.ui;
+package roster;
 
 import com.stc.roster.po.RosterObjects;
 import org.testng.annotations.BeforeSuite;
@@ -19,6 +19,9 @@ public class RosterUI extends RosterObjects() {
 
         }
 
+    @Test
+    public void
+
 //  Get forecast status
     @Test
     public void getForecastStatus(){
@@ -29,7 +32,12 @@ public class RosterUI extends RosterObjects() {
         } else {
             System.out.println("Status is NOT present")
         }
+// screenshot functionality
+        File srcImage = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
+        FileUtils.copyFile(srcImage,new File("PATH HERE"));
+        ExtentUtil.fetchTest().addScreenCaptureFromPath("PATH HERE");
+        driver.quit();
 
         }
 

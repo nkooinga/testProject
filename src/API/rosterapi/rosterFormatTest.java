@@ -1,4 +1,4 @@
-package com.stc.integrationtests.roster.api;
+package rosterapi;
 
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;

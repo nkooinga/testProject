@@ -1,7 +1,5 @@
-package com.stc.functionaltests.roster.api;
+package rosterapi;
 
-import com.stc.roster.api.Payload;
-import com.stc.roster.api.rosterList;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -10,7 +8,6 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -20,80 +17,33 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasItems;
 
-/**
- * Created by nkooinga on 6/5/2017.
- */
-public class RosterPaginationTest extends rosterList {
+public class NurseRosterSearch {
 
-    InputStream apiProps = getClass().getResourceAsStream("com.stc.roster/properties/apienv.properties");
-    Properties prop = new Properties();
-    prop.load(apiProps);
-
-//Test for IWEBMODERN-116
+    //Test for IWEBMODERN-116
     @BeforeSuite
     public void accessRosterPage() {
-
-        prop.getProperty("HOST");
+        Properties prop = new Properties();
+        prop.get("HOST")
         given()
                 .param(/*ROSTERURI*/)
                 .param(/*schoolNurseSelection*/)
-        .when()
+                .when()
                 .get("/com/stc/integrationtests/roster/api")
-        .then()
+                .then()
                 .assertThat()
                 .statusCode(200)
                 .log()
                 .headers();
 
     }
-//Tests for IWEBMODERN-80
-    @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
-    public void happyRosterPageValues(String pageNum, String pageValues) {
-        given()
-                .queryParam("page", pageNum)
-                .queryParam("valuesPerPage", pageValues)
-        .when()
-                .get()
-        .then()
-                .assertThat()
-                .body("currentPage", equalTo(pageNum)).and().body("valuesPerPage",equalTo(pageValues))
-                .and().statusCode(200)
-                .and()
-                .log()
-                .body("totalValues");
-    }
-
-    @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
-    public void negRosterPageValues(String pageNum, String pageValues) {
-        given()
-                .queryParam("page", pageNum)
-                .queryParam("valuesPerPage", pageValues)
-        .when()
-                .get()
-        .then()
-                .assertThat()
-                .body("currentPage", equalTo(pageNum)).and().body("valuesPerPage",equalTo(pageValues));
-    }
-
-    @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
-    public void invRosterPageValues(String pageNum, String pageValues) {
-        given()
-                .queryParam("page", pageNum)
-                .queryParam("valuesPerPage", pageValues)
-        .when()
-                .get()
-        .then()
-                .log()
-                .body();
-    }
 
     @Test
     public void accessRosterWithoutSchoolSelection() {
         given()
                 .param(/*ROSTERURI*/)
-        .when()
+                .when()
                 .get()
-        .then()
+                .then()
                 .log()
                 .body();
     }
@@ -103,9 +53,9 @@ public class RosterPaginationTest extends rosterList {
         given()
                 .param(/*ROSTERURI*/)
                 .param(/*SDCPARAMS*/)
-        .when()
+                .when()
                 .get()
-        .then()
+                .then()
                 .log()
                 .body("/list");
     }
@@ -115,22 +65,22 @@ public class RosterPaginationTest extends rosterList {
         given()
                 .param(/*ROSTERURI*/)
                 .param(/*SDCPARAMS*/)
-        .when()
+                .when()
                 .get("/roster")
-        .then()
+                .then()
                 .log()
                 .body("rosterList.list");
     }
 
-//Tests for IWEBMODERN-116
+    //Tests for IWEBMODERN-116
     @Test()
     public void getSchoolRoster() {
         given()
                 .param(/*schoolSpecificRoster*/)
                 .param(/*schoolNurse*/)
-        .when()
+                .when()
                 .get("/roster")
-        .then()
+                .then()
                 .assertThat()
                 .body("rosterList.count", equalTo(/*Number of kids in roster*/))
                 .body("rosterList.list", hasItems("schoolName","schoolAddress", "schoolPhone","schoolDistrict","firstName","lastName","grade","patientAddress","patientDOB","patientGuardian","patientForecast"))
@@ -143,9 +93,9 @@ public class RosterPaginationTest extends rosterList {
 
         Response studentSearchResponse = given()
                 .queryParam(/*studentParameters*/)
-        .when()
+                .when()
                 .get("/roster/search")
-        .then()
+                .then()
                 .assertThat()
                 .body("rosterList.list", hasItems("firstName", "lastName", "grade", "PatientAddress", " patientDOB", "patientGuardian", "patientForecast"))
                 .statusCode(200);
@@ -156,9 +106,9 @@ public class RosterPaginationTest extends rosterList {
 
         Response studentSearchResponse = given()
                 .queryParam(/*studentParameters*/)
-        .when()
+                .when()
                 .get("/roster/search")
-        .then()
+                .then()
                 .assertThat()
                 .body("rosterList.list", hasItems("firstName", "lastName", "grade", "PatientAddress", " patientDOB", "patientGuardian", "patientForecast"))
                 .statusCode(200)
@@ -179,14 +129,14 @@ public class RosterPaginationTest extends rosterList {
                 .queryParam("STUDENT to update")
                 .body(studentInformation)
     }
-//Tests for IWEBMODERN-117
+    //Tests for IWEBMODERN-117
     @Test
     public void linkStudentDemo() {
         given()
                 .param(/*studentParameters*/)
-        .when()
+                .when()
                 .get("/studentDemographics")
-        .then()
+                .then()
                 .log()
                 .body()
                 .assertThat()
@@ -197,9 +147,9 @@ public class RosterPaginationTest extends rosterList {
     public void linkStudentVacc() {
         given()
                 .param(/*studentParameters*/)
-        .when()
+                .when()
                 .get("/studentVaccinations")
-        .then()
+                .then()
                 .log()
                 .body()
                 .statusCode(200);
@@ -209,9 +159,9 @@ public class RosterPaginationTest extends rosterList {
     public void linkStudentCIS() {
         given()
                 .param(/*studentParameters*/)
-        .when()
+                .when()
                 .get("/studentForm")
-        .then()
+                .then()
                 .log()
                 .body()
                 .statusCode(200);
@@ -221,24 +171,24 @@ public class RosterPaginationTest extends rosterList {
     public void updateStudentGrade() {
         given()
                 .contentType(ContentType.JSON)
-        .when()
+                .when()
                 .body(.param(/*studentParameters*/))
                 .patch()
-        .then()
+                .then()
                 .log()
                 .body(hasItem(/*NewGradeLevel*/));
     }
 
-//Tests for IWEBMDOERN-121
+    //Tests for IWEBMDOERN-121
     //Nurse should not be able to select school
     @Test
     public void nurseSchoolSearch() {
         given()
                 .param(/*SchoolNurseCreds*/)
                 .param(/*SchoolSelection*/)
-        .when()
+                .when()
                 .get()
-        .then()
+                .then()
                 .assertThat()
                 .statusCode(504);
     }
@@ -247,9 +197,9 @@ public class RosterPaginationTest extends rosterList {
     public void districtUserSchoolsView() {
         given()
                 .param(/*districtUserParams*/)
-        .when()
+                .when()
                 .get("/list")
-        .then()
+                .then()
                 .log()
                 .body("schools.list", hasItems("schools"));
     }
@@ -263,10 +213,10 @@ public class RosterPaginationTest extends rosterList {
                 .contentType(ContentType.JSON)
                 .param(/*Nurse Param*/)
                 .param(/*Grade Change Param*/)
-        .when()
+                .when()
                 .body(/*studentVarCall*/)
                 .post()
-        .then()
+                .then()
                 .assertThat()
                 .statusCode(201)
                 .body(contains(/*studentVarCall*/));
@@ -274,7 +224,7 @@ public class RosterPaginationTest extends rosterList {
 
     }
 
-//Tests for IWEBMODERN-122
+    //Tests for IWEBMODERN-122
     @BeforeMethod
     public void rosterDownloadCheck() {
         File rosterDownload = new File(System.getProperty("/*Download Directory Location*/") + File.separator + "/*File name*/");
@@ -287,9 +237,9 @@ public class RosterPaginationTest extends rosterList {
     public void rosterTemplateDownload() {
 
         byte[] actualValue = given()
-            .when()
+                .when()
                 .get(/*DOWNLOADURL*/)
-            .then()
+                .then()
                 .extract()
                 .asByteArray();
 
@@ -310,23 +260,33 @@ public class RosterPaginationTest extends rosterList {
     public void unmatchedDownload() {
         given()
                 .param(/*Unmatched Students Parameters*/)
-        .when()
+                .when()
                 .get("/unmatchedDownload")
-        .then()
+                .then()
     }
 
-//Tests for IWEBMODERN-16
+    //Tests for IWEBMODERN-16
     @Test
     public void rosterUpload() {
         given()
                 .multiPart("Roster Upload File")
-        .when()
+                .when()
                 .post("/fileUploadPath")
-        .then()
+                .then()
                 .assertThat()
                 .body("fileUploadResult", equalTo("OK"))
                 .statuscode(302);
 
     }
 
+    @Test
+    public void rosterUpload() {
+        given()
+                .multiPart("Roster Upload File")
+                .when()
+                .post("/fileUploadPath")
+                .then()
+                .assertThat()
+                .body("fileUploadResult", ("OK"))
+                .statuscode(302);
 }

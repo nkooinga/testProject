@@ -2,12 +2,16 @@
   <library name="Maven: com.aventstack:extentreports:3.0.6">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/com/aventstack/extentreports/3.0.6/extentreports-3.0.6.jar!/" />
+      <root url="file://$APPLICATION_HOME_DIR$/plugins/testng/lib" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/com/aventstack/extentreports/3.0.6/extentreports-3.0.6-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/com/aventstack/extentreports/3.0.6/extentreports-3.0.6-sources.jar!/" />
+      <root url="file://C:/Program Files/Java/jdk1.8.0_131" />
     </SOURCES>
+    <jarDirectory url="file://$APPLICATION_HOME_DIR$/plugins/testng/lib" recursive="false" />
+    <jarDirectory url="file://C:/Program Files/Java/jdk1.8.0_131" recursive="false" type="SOURCES" />
   </library>
 </component>
