@@ -1,4 +1,4 @@
-package com.stc.roster.reporting;
+package reporting;
 
 import org.testng.ITestContext;
 import org.testng.ITestResult;

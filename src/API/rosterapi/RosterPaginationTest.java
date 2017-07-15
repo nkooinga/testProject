@@ -1,13 +1,9 @@
 package rosterapi;
 
 import com.stc.roster.api.Payload;
-import com.stc.roster.reporting.ExtentUtil;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -16,7 +12,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 /**
  * Created by nkooinga on 6/5/2017.
  */
-public class RosterPaginationTest extends Payload {
+public class RosterPaginationTest {
 
 //    InputStream apiProps = getClass().getResourceAsStream("com.stc.roster/properties/apienv.properties");
 //    Properties prop = new Properties();
@@ -24,41 +20,19 @@ public class RosterPaginationTest extends Payload {
     RequestSpecification rspec;
     RequestSpecBuilder build;
 
+
     @BeforeClass
     public void requestSpec() {
         build  = new RequestSpecBuilder();
-        build.setBaseUri("bladeiwebwv.stchome.com:8080/SchoolNurse");
-        build.setBasePath("/Roster");
+        build.setBaseUri("http://bladeiwebwv.stchome.com:8080/SchoolNurse");
+        build.setBasePath("/roster");
 
         rspec = build.build();
     }
 
-
-    @BeforeSuite
-    public void accessRosterPage() {
-
-        ExtentUtil.fetchTest().assignCategory("Pagination Test");
-        Assert.assertTrue(true);
-        RestAssured.baseURI = "bladeiwebwv.stchome.com:8080/SchoolNurse";
-        RestAssured.basePath = "/Roster";
-
-        given()
-                .spec(rspec)
-        .when()
-                .get("")
-        .then()
-                .assertThat()
-                .statusCode(200)
-                .log()
-                .headers();
-
-    }
 //Tests for IWEBMODERN-80
     @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
     public void happyRosterPageValues(String pageNum, String pageValues) {
-
-        ExtentUtil.fetchTest().assignCategory("Pagination Test");
-        Assert.assertTrue(true);
 
         given()
                 .spec(rspec)
@@ -68,18 +42,16 @@ public class RosterPaginationTest extends Payload {
                 .get("")
         .then()
                 .assertThat()
-                .body("currentPage", equalTo(pageNum)).and().body("valuesPerPage",equalTo(pageValues))
+                .body("currentPage", equalTo(Integer.parseInt(pageNum))).and().body("valuesPerPage",equalTo(Integer.parseInt(pageValues)))
                 .and().statusCode(200)
                 .and()
                 .log()
                 .body();
+
     }
 
     @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
     public void negRosterPageValues(String pageNum, String pageValues) {
-
-        ExtentUtil.fetchTest().assignCategory("Pagination Test");
-        Assert.assertTrue(true);
 
         given()
                 .spec(rspec)
@@ -95,9 +67,6 @@ public class RosterPaginationTest extends Payload {
     @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
     public void invRosterPageValues(String pageNum, String pageValues) {
 
-        ExtentUtil.fetchTest().assignCategory("Pagination Test");
-        Assert.assertTrue(true);
-
         given()
                 .spec(rspec)
                 .queryParam("page", pageNum)
@@ -112,9 +81,6 @@ public class RosterPaginationTest extends Payload {
     @Test
     public void sortOrderAscFirstName() {
 
-        ExtentUtil.fetchTest().assignCategory("Pagination Test");
-        Assert.assertTrue(true);
-
         given()
                 .spec(rspec)
                 .queryParam("page", "1")
@@ -124,14 +90,11 @@ public class RosterPaginationTest extends Payload {
                 .get("")
         .then()
                 .assertThat()
-                .body("field.firstName[0]".substring(1), equalTo("A"));
+                .body(".values.firstName[0]".substring(1), equalTo("Student1"));
     }
 
     @Test
     public void sortOrderDescFirstName() {
-
-        ExtentUtil.fetchTest().assignCategory("Pagination Test");
-        Assert.assertTrue(true);
 
         given()
                 .spec(rspec)
@@ -142,14 +105,11 @@ public class RosterPaginationTest extends Payload {
                 .get("")
         .then()
                 .assertThat()
-                .body("field.firstName[0]".substring(1), equalTo("Z"));
+                .body(".values.firstName[0]".substring(1), equalTo("Student1"));
     }
 
     @Test
     public void sortOrderAscLastName() {
-
-        ExtentUtil.fetchTest().assignCategory("Pagination Test");
-        Assert.assertTrue(true);
 
         given()
                 .spec(rspec)
@@ -160,14 +120,11 @@ public class RosterPaginationTest extends Payload {
                 .get("")
         .then()
                 .assertThat()
-                .body("field.lastName[0]".substring(1), equalTo("A"));
+                .body(".values.lastName[0]".substring(1), equalTo("Test"));
     }
 
     @Test
     public void sortOrderDescLastName() {
-
-        ExtentUtil.fetchTest().assignCategory("Pagination Test");
-        Assert.assertTrue(true);
 
         given()
                 .spec(rspec)
@@ -178,14 +135,11 @@ public class RosterPaginationTest extends Payload {
                 .get()
         .then()
                 .assertThat()
-                .body("field.lastName[0]".substring(1), equalTo("Z"));
+                .body(".values.lastName[0]".substring(1), equalTo("Test"));
     }
 
 //    @Test
 //    public void getAllValues() {
-//
-//        ExtentUtil.fetchTest().assignCategory("Pagination Test");
-//        Assert.assertTrue(true);
 //
 //        Response res = given()
 //                .spec(rspec)
@@ -206,5 +160,6 @@ public class RosterPaginationTest extends Payload {
 //
 //        System.out.println(count);
 //    }
+
 
 }

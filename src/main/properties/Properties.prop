@@ -1,0 +1,3 @@
+HOST=https://stc-keycloak.focus21.io/auth/realms/stc_single_sign-on/protocol/openid-connect/auth?client_id=jwt-client&redirect_uri=http%3A%2F%2Fstc.school.nurse.frontend.ci.0.s3-website-us-west-2.amazonaws.com%2Froster&state=9c45ff86-bdd5-494c-a18f-a277c1b78db8&nonce=b17dbccb-134a-42ff-8b0a-90a17f17efb8&response_mode=fragment&response_type=code&scope=openid
+BROWSERTYPE=chrome
+SCREENSHOT=C:/Modernization/TestScreenshots

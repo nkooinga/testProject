@@ -1,9 +1,8 @@
-package com.stc.roster.reporting;
+package reporting;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.ExtentXReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import java.net.InetAddress;
@@ -13,7 +12,7 @@ import java.util.Map;
 
 public class ExtentUtil {
 
-    static ExtentReports extentReports;
+    public static ExtentReports extentReports = null;
     static Map<Integer,ExtentTest> extentTestMap = new HashMap<Integer, ExtentTest>();
 
     public static ExtentReports createReporter(String fileName) {
@@ -23,13 +22,15 @@ public class ExtentUtil {
         extentHtmlReporter.config().setReportName("Sample ExtentReports");
         extentHtmlReporter.config().setChartVisibilityOnOpen(true);
 
-        //ExtentX Reporter
-        ExtentXReporter extentXReporter = new ExtentXReporter("locahost");
-        extentXReporter.config().setServerUrl("http://localhost:1337");
-        extentXReporter.config().setReportName("Sample ExtentXReport");
+        // ExtentX Reporter
+//        ExtentXReporter extentXReporter = new ExtentXReporter("localhost");
+//        extentXReporter.config().setServerUrl("http://localhost:1337");
+//        extentXReporter.config().setReportName("Sample ExtentXReport");
 
         extentReports = new ExtentReports();
-        extentReports.attachReporter(extentHtmlReporter,extentXReporter);
+        extentReports.attachReporter(extentHtmlReporter/*, extentXReporter*/);
+
+
 
         //System Info
         try {
@@ -70,4 +71,5 @@ public class ExtentUtil {
     public static synchronized ExtentTest fetchTest() {
         return extentTestMap.get((int) (Thread.currentThread().getId()));
     }
+
 }

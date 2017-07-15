@@ -11,8 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Modernization" target="1.5" />
-      <module name="School Nurse" target="1.5" />
+      <module name="School Nurse" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

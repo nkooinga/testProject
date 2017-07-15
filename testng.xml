@@ -1,12 +1,27 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Roster API Tests">
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!--<suite name="Roster API Tests">-->
+    <!--<listeners>-->
+        <!--<listener class-name="TestCaseWatcher"/>-->
+    <!--</listeners>-->
+    <!--<test name="Pagination Test" allow-return-values="true">-->
+        <!--<classes>-->
+            <!--<class name="rosterapi.RosterPaginationTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+<!--</suite>-->
+<suite name="Roster UI Tests">
     <listeners>
-        <listener class-name="com.stc.roster.reporting.TestCaseWatcher"/>
+        <listener class-name="reporting.TestCaseWatcher"/>
     </listeners>
-    <test name="Pagination Test" allow-return-values="true">
+    <!--<test name="validLogin" allow-return-values="true">-->
+        <!--<classes>-->
+            <!--<class name="Login.LoginTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+    <test name="demographicsAllField" allow-return-values="true">
         <classes>
-            <class name="rosterapi.RosterPaginationTest" />
+            <class name="demographics.DemographicsTest"/>
         </classes>
     </test>
 </suite>
