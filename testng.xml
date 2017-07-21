@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <!--<suite name="Roster API Tests">-->
     <!--<listeners>-->
-        <!--<listener class-name="TestCaseWatcher"/>-->
+        <!--<listener class-name="reporting.TestCaseWatcher"/>-->
     <!--</listeners>-->
     <!--<test name="Pagination Test" allow-return-values="true">-->
         <!--<classes>-->
@@ -14,14 +14,19 @@
     <listeners>
         <listener class-name="reporting.TestCaseWatcher"/>
     </listeners>
-    <!--<test name="validLogin" allow-return-values="true">-->
-        <!--<classes>-->
-            <!--<class name="Login.LoginTest" />-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="validLogin" allow-return-values="true">
+        <classes>
+            <class name="Login.LoginTest" />
+        </classes>
+    </test>
     <test name="demographicsAllField" allow-return-values="true">
         <classes>
             <class name="demographics.DemographicsTest"/>
+        </classes>
+    </test>
+    <test name="Roster Page Test" allow-return-values="true">
+        <classes>
+            <class name="roster.RosterUI"/>
         </classes>
     </test>
 </suite>

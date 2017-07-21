@@ -1,17 +1,13 @@
 //package com.stc.roster.api;
 //
+//import io.restassured.specification.AuthenticationSpecification;
+//
 //public class Resources {
 //
-//    public static String getData() {
-//        String get = "/roster";
-//        return get;
+//    AuthenticationSpecification basic;
+//
+//    public void Auth() {
 //
 //    }
-//
-//    public static String placePostData() {
-//        String res = "/roster";
-//        return res;
-//    }
-//
 //
 //}

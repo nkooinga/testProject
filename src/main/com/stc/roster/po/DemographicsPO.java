@@ -171,6 +171,10 @@ public class DemographicsPO {
         else System.out.println("Element not visible");
     }
 
+    String firstName;
+    String lastName;
+    String middleName;
+
     public void editStudentInfo() {
         getPatientGrade().clear();
         getPatientGrade().sendKeys("10");

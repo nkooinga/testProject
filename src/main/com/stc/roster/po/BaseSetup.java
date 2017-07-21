@@ -1,10 +1,15 @@
 package com.stc.roster.po;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import reporting.ExtentUtil;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -101,16 +106,16 @@ public class BaseSetup {
         return driver;
     }
 
-//    public void takeScreenshot() throws IOException {
-//
-//        Properties prop = new Properties();
-//        FileInputStream fis = new FileInputStream("C:/Modernization/TestScreenshots");
-//
-//        prop.load(fis);
-//        String ssloc = prop.getProperty("SCREENSHOT");
-//        File srcImage = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//
-//        FileUtils.copyFile(srcImage,new File(ssloc));
-//        ExtentUtil.fetchTest().addScreenCaptureFromPath(ssloc);
-//    }
+    public void takeScreenshot() throws IOException {
+
+        Properties prop = new Properties();
+        FileInputStream fis = new FileInputStream("C:/Modernization/TestScreenshots");
+
+        prop.load(fis);
+        String ssloc = prop.getProperty("SCREENSHOT");
+        File srcImage = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+        FileUtils.copyFile(srcImage,new File(ssloc));
+        ExtentUtil.fetchTest().addScreenCaptureFromPath(ssloc);
+    }
 }

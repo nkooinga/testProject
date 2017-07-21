@@ -1,7 +1,9 @@
 package rosterapi;
 
+import authentication.KeycloakRestApiManager;
 import com.stc.roster.api.Payload;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.specification.AuthenticationSpecification;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,22 +21,37 @@ public class RosterPaginationTest {
 //    prop.load(apiProps);
     RequestSpecification rspec;
     RequestSpecBuilder build;
+    AuthenticationSpecification login;
+    KeycloakRestApiManager kram;
 
 
     @BeforeClass
     public void requestSpec() {
         build  = new RequestSpecBuilder();
-        build.setBaseUri("http://bladeiwebwv.stchome.com:8080/SchoolNurse");
+        build.setBaseUri("https://sn-api.herokuapp.com");
         build.setBasePath("/roster");
 
         rspec = build.build();
+
     }
+
+    @Test
+    public void authTest() {
+        kram = new KeycloakRestApiManager();
+        kram.getToken();
+
+
+    }
+
+
+
 
 //Tests for IWEBMODERN-80
     @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
     public void happyRosterPageValues(String pageNum, String pageValues) {
 
         given()
+                .auth().preemptive().oauth2(kram.accessToken)
                 .spec(rspec)
                 .queryParam("page", pageNum)
                 .queryParam("valuesPerPage", pageValues)
@@ -46,7 +63,7 @@ public class RosterPaginationTest {
                 .and().statusCode(200)
                 .and()
                 .log()
-                .body();
+                .all();
 
     }
 
@@ -54,6 +71,7 @@ public class RosterPaginationTest {
     public void negRosterPageValues(String pageNum, String pageValues) {
 
         given()
+                .auth().preemptive().oauth2(kram.accessToken)
                 .spec(rspec)
                 .queryParam("page", pageNum)
                 .queryParam("valuesPerPage", pageValues)
@@ -68,6 +86,7 @@ public class RosterPaginationTest {
     public void invRosterPageValues(String pageNum, String pageValues) {
 
         given()
+                .auth().preemptive().oauth2(kram.accessToken)
                 .spec(rspec)
                 .queryParam("page", pageNum)
                 .queryParam("valuesPerPage", pageValues)
@@ -82,6 +101,7 @@ public class RosterPaginationTest {
     public void sortOrderAscFirstName() {
 
         given()
+                .auth().preemptive().oauth2(kram.accessToken)
                 .spec(rspec)
                 .queryParam("page", "1")
                 .queryParam("sortBy", "firstName")
@@ -97,6 +117,7 @@ public class RosterPaginationTest {
     public void sortOrderDescFirstName() {
 
         given()
+                .auth().preemptive().oauth2(kram.accessToken)
                 .spec(rspec)
                 .queryParam("page", "1")
                 .queryParam("sortBy", "firstName")
@@ -112,6 +133,7 @@ public class RosterPaginationTest {
     public void sortOrderAscLastName() {
 
         given()
+                .auth().preemptive().oauth2(kram.accessToken)
                 .spec(rspec)
                 .queryParam("page", "1")
                 .queryParam("sortBy", "lastName")
@@ -127,6 +149,7 @@ public class RosterPaginationTest {
     public void sortOrderDescLastName() {
 
         given()
+                .auth().preemptive().oauth2(kram.accessToken)
                 .spec(rspec)
                 .queryParam("page", "1")
                 .queryParam("sortBy", "lastName")

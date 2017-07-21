@@ -70,10 +70,11 @@ public class LoginPO {
 
     public void loginUser(String user, String pw) throws IOException, InterruptedException {
         verifySignInURL();
-
+        Thread.sleep(2000);
         getUsername().sendKeys(user);
         getPassword().sendKeys(pw);
         signInBtn();
+        Thread.sleep(5000);
         getURL();
     }
 //

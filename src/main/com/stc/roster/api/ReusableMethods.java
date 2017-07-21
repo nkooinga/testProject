@@ -1,9 +1,6 @@
 //package com.stc.roster.api;
 //
-//import io.restassured.path.json.JsonPath;
-//import io.restassured.response.Response;
-//
-//import java.util.ArrayList;
+//import static io.restassured.RestAssured.given;
 //
 //public class ReusableMethods {
 //
