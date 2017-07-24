@@ -80,6 +80,20 @@ public class DemographicsPO {
         return patientZipCode;
     }
 
+    @FindBy(id = "cityCity")
+    private WebElement patientCity;
+
+    public WebElement getPatientCity() {
+        return patientCity;
+    }
+
+    @FindBy(id = "stateState")
+    private WebElement patientState;
+
+    public WebElement getPatientState() {
+        return patientState;
+    }
+
     @FindBy(id = "phoneNumberPhone")
     private WebElement patientPhone;
 
@@ -136,21 +150,35 @@ public class DemographicsPO {
         return motherMaiden;
     }
 
-    @FindBy(xpath = "html/body/div[2]/div/div[2]/div/div/div/div/div[2]/div[6]/div/div/button[1]")
+    @FindBy(className = "glyphicon-plus")
+    private WebElement addNotesButton;
+
+    public WebElement getAddNotesButton() {
+        return addNotesButton;
+    }
+
+    @FindBy(id = "notesundefined")
+    private WebElement notesText;
+
+    public WebElement getNotesText() {
+        return notesText;
+    }
+
+    @FindBy(xpath = "//span[.='Edit']")
     private WebElement editBtn;
 
     public WebElement getEditBtn() {
         return editBtn;
     }
 
-    @FindBy(xpath = "html/body/div[2]/div/div[2]/div/div/div/div/div[2]/div[6]/div/div/button[1]")
+    @FindBy(xpath = "//span[.='Save']")
     private WebElement saveBtn;
 
     public WebElement getSaveBtn() {
         return saveBtn;
     }
 
-    @FindBy(xpath = "html/body/div[2]/div/div[2]/div/div/div/div/div[2]/div[6]/div/div/button[2]")
+    @FindBy(xpath = "//span[.='Cancel']")
     private WebElement cancelBtn;
 
     public WebElement getCancelBtn() {
@@ -195,6 +223,10 @@ public class DemographicsPO {
         getPatientStreetName().sendKeys("Main St.");
         getPatientZipCode().clear();
         getPatientZipCode().sendKeys("85281");
+        getPatientCity().clear();
+        getPatientCity().sendKeys("Tempe");
+        getPatientState().clear();
+        getPatientState().sendKeys("Arizona");
         getPatientPhone().clear();
         getPatientPhone().sendKeys("4807458761");
         getPatientEmail().clear();
@@ -212,5 +244,11 @@ public class DemographicsPO {
         getGuardianStreetName().sendKeys("Main St.");
         getGuardianZipCode().clear();
         getGuardianZipCode().sendKeys("85281");
+    }
+
+    public void addPatientNotes() {
+        getAddNotesButton().click();
+        getNotesText().clear();
+        getNotesText().sendKeys("Test Notes");
     }
 }

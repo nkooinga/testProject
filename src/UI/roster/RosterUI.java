@@ -30,7 +30,7 @@ public class RosterUI extends BaseSetup {
         }
     }
 
-    @Test(priority = 0, dataProvider = "Authentication", dataProviderClass = DataProviders.class)
+    @Test(priority = 0, dataProvider = "authentication", dataProviderClass = DataProviders.class)
     public void rosterLogin(String user, String pw) throws IOException, InterruptedException {
         lpo = new LoginPO(driver);
         lpo.loginUser(user, pw);

@@ -14,11 +14,11 @@
     <listeners>
         <listener class-name="reporting.TestCaseWatcher"/>
     </listeners>
-    <test name="validLogin" allow-return-values="true">
-        <classes>
-            <class name="Login.LoginTest" />
-        </classes>
-    </test>
+    <!--<test name="validLogin" allow-return-values="true">-->
+        <!--<classes>-->
+            <!--<class name="Login.LoginTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
     <test name="demographicsAllField" allow-return-values="true">
         <classes>
             <class name="demographics.DemographicsTest"/>

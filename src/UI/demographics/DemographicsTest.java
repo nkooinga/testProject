@@ -26,8 +26,8 @@ public class DemographicsTest extends BaseSetup {
         }
 
     }
-
-    @Test(dataProvider = "Authentication", dataProviderClass = DataProviders.class)
+//  Need city/state/notes
+    @Test(dataProvider = "authentication", dataProviderClass = DataProviders.class)
     public void editAllDemoFields(String user, String pw) throws IOException, InterruptedException {
         lpo = new LoginPO(driver);
         lpo.loginUser(user, pw);
@@ -39,6 +39,7 @@ public class DemographicsTest extends BaseSetup {
         dpo.editStudentAddress();
         dpo.editGuardian1();
 //        Will need to change below once DB is attached.
+        dpo.addPatientNotes();
         dpo.acceptCancel();
         Thread.sleep(1000);
     }

@@ -1,5 +1,6 @@
 package com.stc.roster.api;
 
+import org.omg.CORBA.OBJ_ADAPTER;
 import org.testng.annotations.DataProvider;
 
 import java.lang.reflect.Method;
@@ -18,11 +19,13 @@ public class Payload {
         }
     }
 
-//    @DataProvider(name = "rosterGradeChange")
-//    public static Object[][] rosterGradeChange(Method method) {
-//        String testCase = method.getName();
-//        if (testCase.contains("Asc")) {
-//            return new Object[][]
-//        }
-//    }
+    @DataProvider(name = "School ID")
+    public static Object[][] schoolId() {
+            return new Object[][]{
+                    {"1"}
+                    ,{"65837"}};
+    }
+
+    @DataProvider(name = "School Grades")
+    public static Object[][] schoolGrades()
 }

@@ -74,6 +74,7 @@ public class RosterPaginationTest {
                 .auth().preemptive().oauth2(kram.accessToken)
                 .spec(rspec)
                 .queryParam("page", pageNum)
+
                 .queryParam("valuesPerPage", pageValues)
         .when()
                 .get("")
