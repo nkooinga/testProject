@@ -3,6 +3,7 @@ package reporting;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentXReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import java.net.InetAddress;
@@ -19,16 +20,16 @@ public class ExtentUtil {
         //HTML Reporter
         ExtentHtmlReporter extentHtmlReporter = new ExtentHtmlReporter(fileName);
         extentHtmlReporter.config().setTheme(Theme.DARK);
-        extentHtmlReporter.config().setReportName("Sample ExtentReports");
+        extentHtmlReporter.config().setReportName("ExtentReports");
         extentHtmlReporter.config().setChartVisibilityOnOpen(true);
 
         // ExtentX Reporter
-//        ExtentXReporter extentXReporter = new ExtentXReporter("localhost");
-//        extentXReporter.config().setServerUrl("http://localhost:1337");
-//        extentXReporter.config().setReportName("Sample ExtentXReport");
+        ExtentXReporter extentXReporter = new ExtentXReporter("localhost");
+        extentXReporter.config().setServerUrl("http://localhost:1337");
+        extentXReporter.config().setReportName("ExtentXReport");
 
         extentReports = new ExtentReports();
-        extentReports.attachReporter(extentHtmlReporter/*, extentXReporter*/);
+        extentReports.attachReporter(extentHtmlReporter, extentXReporter);
 
 
 
@@ -37,7 +38,7 @@ public class ExtentUtil {
             extentReports.setSystemInfo("HostName", InetAddress.getLocalHost().getHostName());
             extentReports.setSystemInfo("IP Address",InetAddress.getLocalHost().getHostAddress());
             extentReports.setSystemInfo("OS",System.getProperty("os.name"));
-            extentReports.setSystemInfo("UserName",System.getProperty("user.name"));
+//            extentReports.setSystemInfo("UserName",System.getProperty("user.name"));
             extentReports.setSystemInfo("Java Version",System.getProperty("java.version"));
         } catch (UnknownHostException e) {
             e.printStackTrace();

@@ -24,11 +24,11 @@
             <class name="demographics.DemographicsTest"/>
         </classes>
     </test>
-    <test name="Roster Page Test" allow-return-values="true">
-        <classes>
-            <class name="roster.RosterUI"/>
-        </classes>
-    </test>
+    <!--<test name="Roster Page Test" allow-return-values="true">-->
+        <!--<classes>-->
+            <!--<class name="roster.RosterUI"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 </suite>
 
 

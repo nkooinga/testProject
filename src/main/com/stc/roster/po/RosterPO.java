@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by nkooinga on 5/30/2017.
@@ -26,7 +28,7 @@ public class RosterPO {
     public WebElement getStudentSearch() {
         return studentSearch;
     }
-//  Status Filter
+    //  Status Filter
     @FindBy(xpath = ".//*[@id='app-content']/div[2]/div/div[2]/div/div[1]/div[4]/div/span[1]/span/span/div/div/div")
     private WebElement statusFilter;
 
@@ -69,13 +71,35 @@ public class RosterPO {
         return optionalStatus;
     }
 
-    @FindBy(id = "listBox2")
+    @FindBy(xpath = ".//*[contains(text(), 'Conditional')]")
+    private WebElement conditionalStatus;
+
+    public WebElement getConditionalStatus() {
+        return conditionalStatus;
+    }
+
+    @FindBy(xpath = ".//*[contains(text(), 'Not Complete')]")
+    private WebElement notCompleteStatus;
+
+    public WebElement getNotCompleteStatus() {
+        return notCompleteStatus;
+    }
+
+    @FindBy(xpath = ".//*[contains(text(), 'Complete')]")
+    private WebElement completeStatus;
+
+    public WebElement getCompleteStatus() {
+        return completeStatus;
+    }
+
+    @FindBy(className = "dqouFe")
     private WebElement rosterGradeFilter;
 
     public WebElement getRosterGradeFilter() {
         return rosterGradeFilter;
     }
-//  Grade Filter Elements
+
+    //  Grade Filter Elements
     @FindBy(xpath = ".//*[@id='listBox2']/li[1]/div")
     private WebElement rosterAnyGrade;
 
@@ -187,7 +211,7 @@ public class RosterPO {
     public WebElement getUpdateRosterBtn() {
         return updateRosterBtn;
     }
-//Student Specific Elements
+    //Student Specific Elements
     @FindBy(className = "glyphicon-pencil")
     private WebElement studentDemo;
 
@@ -230,42 +254,107 @@ public class RosterPO {
         return forecastStatus;
     }
 
-    public void anyStatusSelect() throws InterruptedException {
-        Thread.sleep(2000);
+    @FindBy(className = "glyphicon-chevron-right")
+    private WebElement nextRosterPage;
+
+    public WebElement getNextRosterPage() {
+        return nextRosterPage;
+    }
+
+    public void statusFilterSelect() throws InterruptedException {
+//        WebDriverWait wait = new WebDriverWait(driver, 20);
+//        wait.until(ExpectedConditions.elementToBeClickable(getStatusFilter()));
         getStatusFilter().click();
-        Thread.sleep(1000);
+        Thread.sleep(100);
+    }
+
+    public void anyStatusSelect() throws InterruptedException {
+        statusFilterSelect();
         getAnyStatus().click();
+        Thread.sleep(500);
     }
 
     public void dueNowStatusSelect() throws InterruptedException {
-        Thread.sleep(2000);
-        getStatusFilter().click();
-        Thread.sleep(1000);
+        statusFilterSelect();
         getDueNowStatus().click();
+        Thread.sleep(500);
 //        Assert.assertEquals("Due Now", getPatientStatus());
     }
 
     public void pastDueStatusSelect() throws InterruptedException {
-        Thread.sleep(2000);
-        getStatusFilter().click();
-        Thread.sleep(1000);
+        statusFilterSelect();
         getPastDueStatus().click();
+        Thread.sleep(500);
 //        Assert.assertEquals("Past Due", getPatientStatus());
     }
 
     public void upToDateStatusSelect() throws InterruptedException {
-        Thread.sleep(2000);
-        getStatusFilter().click();
-        Thread.sleep(1000);
+        statusFilterSelect();
         getUpToDateStatus().click();
+        Thread.sleep(500);
 //        Assert.assertEquals("Up to Date", getPatientStatus());
     }
 
     public void optionalStatusSelect() throws InterruptedException {
-        Thread.sleep(2000);
-        getStatusFilter().click();
-        Thread.sleep(1000);
+        statusFilterSelect();
         getOptionalStatus().click();
+        Thread.sleep(500);
 //        Assert.assertEquals("Optional", getPatientStatus());
+    }
+
+    public void conditionalStatusSelect() throws InterruptedException {
+        statusFilterSelect();
+        getConditionalStatus().click();
+//        Assert.assertEquals("Conditional", getPatientStatus());
+    }
+
+    public void notCompleteStatusSelect() throws InterruptedException {
+        statusFilterSelect();
+        getNotCompleteStatus().click();
+//        Assert.assertEquals("Not Complete", getPatientStatus());
+    }
+
+    public void completeStatusSelect() throws InterruptedException {
+        statusFilterSelect();
+        getCompleteStatus().click();
+//        Assert.assertEquals("Complete", getPatientStatus());
+    }
+
+    public void gradeFilterSelect() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.elementToBeClickable(getRosterGradeFilter()));
+        getRosterGradeFilter().click();
+        Thread.sleep(500);
+    }
+
+    public void firstGradeSelect() throws InterruptedException {
+        gradeFilterSelect();
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.elementToBeClickable(getRosterGradeFilter()));
+        getRosterFirstGrade().click();
+    }
+
+    public void secondGradeSelect() throws InterruptedException {
+        gradeFilterSelect();
+        getRosterSecondGrade().click();
+        Thread.sleep(500);
+    }
+
+    public void thirdGradeSelect() throws InterruptedException {
+        gradeFilterSelect();
+        getRosterThirdGrade().click();
+        Thread.sleep(500);
+    }
+
+    public void fourthGradeSelect() throws InterruptedException {
+        gradeFilterSelect();
+        getRosterFourthGrade().click();
+        Thread.sleep(500);
+    }
+
+    public void fifthGradeSelect() throws InterruptedException {
+        gradeFilterSelect();
+        getRosterFifthGrade().click();
+        Thread.sleep(500);
     }
 }

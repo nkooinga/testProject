@@ -1,10 +1,13 @@
 package rosterapi;
 
 //import com.stc.roster.api.ReusableMethods;
+import authentication.IWebAuth;
+import authentication.KeycloakRestApiManager;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -13,6 +16,8 @@ public class ChangeGrade {
 
     RequestSpecification rspec;
     RequestSpecBuilder build;
+    KeycloakRestApiManager kram;
+    IWebAuth iwa;
 
     @BeforeClass
     public void requestSpec() {
@@ -23,15 +28,22 @@ public class ChangeGrade {
         rspec = build.build();
     }
 
+    @BeforeTest
+    public void accessToken() {
+        iwa = new IWebAuth();
+        iwa.getToken();
+    }
+
     @Test
     public void increaseGrade() {
         Response response = given()
+                .auth().preemptive().oauth2(iwa.accessIWebToken)
                 .spec(rspec)
                 .queryParam("page", "1")
                 .queryParam("sortBy", "lastName")
-            .when()
+                .when()
                 .get("/list")
-            .then()
+                .then()
                 .extract()
                 //.response()
                 .path("list.student.findAll{grade<'12'}");
@@ -40,7 +52,7 @@ public class ChangeGrade {
 //        System.out.println(js);
 
         //Add in grade incrementing logic below
-       // for (int ng = )
+        // for (int ng = )
 
 //
 //        given()
@@ -55,6 +67,14 @@ public class ChangeGrade {
 
 
     }
+
+//    @Test
+//    public void getSchoolGrade() {
+//        given()
+//                .auth().preemptive().oauth2(iwa.accessIWebToken)
+//                .param()
+//
+//    }
 
 
 

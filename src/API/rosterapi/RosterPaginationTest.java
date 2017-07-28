@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
  */
 public class RosterPaginationTest {
 
-//    InputStream apiProps = getClass().getResourceAsStream("com.stc.roster/properties/apienv.properties");
+    //    InputStream apiProps = getClass().getResourceAsStream("com.stc.roster/properties/apienv.properties");
 //    Properties prop = new Properties();
 //    prop.load(apiProps);
     RequestSpecification rspec;
@@ -46,7 +46,7 @@ public class RosterPaginationTest {
 
 
 
-//Tests for IWEBMODERN-80
+    //Tests for IWEBMODERN-80
     @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
     public void happyRosterPageValues(String pageNum, String pageValues) {
 
@@ -55,9 +55,9 @@ public class RosterPaginationTest {
                 .spec(rspec)
                 .queryParam("page", pageNum)
                 .queryParam("valuesPerPage", pageValues)
-        .when()
+                .when()
                 .get("")
-        .then()
+                .then()
                 .assertThat()
                 .body("currentPage", equalTo(Integer.parseInt(pageNum))).and().body("valuesPerPage",equalTo(Integer.parseInt(pageValues)))
                 .and().statusCode(200)
@@ -76,9 +76,9 @@ public class RosterPaginationTest {
                 .queryParam("page", pageNum)
 
                 .queryParam("valuesPerPage", pageValues)
-        .when()
+                .when()
                 .get("")
-        .then()
+                .then()
                 .assertThat()
                 .statusCode(200);
     }
@@ -91,9 +91,9 @@ public class RosterPaginationTest {
                 .spec(rspec)
                 .queryParam("page", pageNum)
                 .queryParam("valuesPerPage", pageValues)
-        .when()
+                .when()
                 .get("")
-        .then()
+                .then()
                 .assertThat()
                 .statusCode(400);
     }
@@ -107,9 +107,9 @@ public class RosterPaginationTest {
                 .queryParam("page", "1")
                 .queryParam("sortBy", "firstName")
                 .queryParam("sortOrder", "asc")
-        .when()
+                .when()
                 .get("")
-        .then()
+                .then()
                 .assertThat()
                 .body(".values.firstName[0]".substring(1), equalTo("Student1"));
     }
@@ -123,9 +123,9 @@ public class RosterPaginationTest {
                 .queryParam("page", "1")
                 .queryParam("sortBy", "firstName")
                 .queryParam("sortOrder", "desc")
-        .when()
+                .when()
                 .get("")
-        .then()
+                .then()
                 .assertThat()
                 .body(".values.firstName[0]".substring(1), equalTo("Student1"));
     }
@@ -139,9 +139,9 @@ public class RosterPaginationTest {
                 .queryParam("page", "1")
                 .queryParam("sortBy", "lastName")
                 .queryParam("sortOrder", "asc")
-        .when()
+                .when()
                 .get("")
-        .then()
+                .then()
                 .assertThat()
                 .body(".values.lastName[0]".substring(1), equalTo("Test"));
     }
@@ -155,9 +155,9 @@ public class RosterPaginationTest {
                 .queryParam("page", "1")
                 .queryParam("sortBy", "lastName")
                 .queryParam("sortOrder", "desc")
-        .when()
+                .when()
                 .get()
-        .then()
+                .then()
                 .assertThat()
                 .body(".values.lastName[0]".substring(1), equalTo("Test"));
     }

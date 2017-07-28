@@ -7,8 +7,15 @@ import java.lang.reflect.Method;
 public class DataProviders {
 
     @DataProvider(name = "Authentication")
-    public static Object[][] credentials() {
-        return new Object[][] {{"TSPEARS", "password1"}};
+    public static Object[][] credentials(Method method) {
+        String testCase = method.getName();
+        if ("invalidLoginTest".equals(testCase)) {
+            return new Object[][]{
+                    {"ABC123", "QWERTY!987"}
+                    ,{"Test", "Test"}};
+        } else
+            return new Object[][] {
+                    {"nick_sn", "nick_sn"}};
     }
 
     @DataProvider(name = "Roster Search")
@@ -16,11 +23,11 @@ public class DataProviders {
         String testCase = method.getName();
         if ("validRosterSearch".equals(testCase)) {
             return new Object[][]{
-                    {"Brant"}
-                    , {"Rhea"}
-                    , {"Sean"}
-                    , {"Mortimer"}
-                    , {"Allene"}};
+                    {"Test"}
+                    , {"Student1"}
+                    , {"Student2"}
+                    , {"Student3"}
+                    , {"Student4"}};
         } else
             return new Object[][] {
                     {"-em"}
@@ -48,28 +55,28 @@ public class DataProviders {
             return new Object[][] {
                     {"Herbert", "Hoover", "A."}
                     ,{"George", "Washington", "C."}};
-        }
+    }
 
     @DataProvider(name = "Student Birthdate")
     public static Object[][] studentBirthdate(Method method) {
         String testCase = method.getName();
-            if ("validBirthdate".equals(testCase)) {
-                return new Object[][] {
-                        {"01/01/2010"}
-                        ,{"12/31/1999"}
-                        ,{"02/29/2000"}};
-                } else if ("invalidBirthdate".equals(testCase)) {
-                return new Object[][] {
-                        {"00/32/2020"}
-                        ,{"01013000"}
-                        ,{"01/-2/2010"}
-                        ,{"10/ab/2010"}
-                        ,{"12/!S/2OlO"}
-                        ,{"1001@@@@"}};
-            } else
-                return new Object[][] {
-                        {"07/01/2010"}};
-        }
+        if ("validBirthdate".equals(testCase)) {
+            return new Object[][] {
+                    {"01/01/2010"}
+                    ,{"12/31/1999"}
+                    ,{"02/29/2000"}};
+        } else if ("invalidBirthdate".equals(testCase)) {
+            return new Object[][] {
+                    {"00/32/2020"}
+                    ,{"01013000"}
+                    ,{"01/-2/2010"}
+                    ,{"10/ab/2010"}
+                    ,{"12/!S/2OlO"}
+                    ,{"1001@@@@"}};
+        } else
+            return new Object[][] {
+                    {"07/01/2010"}};
+    }
 
     @DataProvider(name = "Guardian Information")
     public static Object[][] guarddianInformation(Method method) {

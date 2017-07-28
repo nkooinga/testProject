@@ -1,3 +1,3 @@
-HOST=https://stc-keycloak.focus21.io/auth/realms/stc_single_sign-on/protocol/openid-connect/auth?client_id=jwt-client&redirect_uri=http%3A%2F%2Fstc.school.nurse.frontend.ci.0.s3-website-us-west-2.amazonaws.com%2Froster&state=9c45ff86-bdd5-494c-a18f-a277c1b78db8&nonce=b17dbccb-134a-42ff-8b0a-90a17f17efb8&response_mode=fragment&response_type=code&scope=openid
+HOST=https://kcuat.stchome.com/auth/realms/sn/protocol/openid-connect/auth?client_id=jwt-dev&redirect_uri=http%3A%2F%2Fstc.school.nurse.frontend.ci.0.s3-website-us-west-2.amazonaws.com%2Froster&state=f53ff931-5d2d-4ee4-8ec3-78e7e8a2feb4&nonce=86ae6208-42a3-487e-9a87-749d2d429d66&response_mode=fragment&response_type=code&scope=openid
 BROWSERTYPE=chrome
 SCREENSHOT=C:/Modernization/TestScreenshots

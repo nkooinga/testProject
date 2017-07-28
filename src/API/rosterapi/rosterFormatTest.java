@@ -41,9 +41,9 @@ public class rosterFormatTest {
                 .auth().preemptive().oauth2(iwa.accessIWebToken)
                 .spec(rspec)
                 .queryParam("schoolID", "1")
-        .when()
+                .when()
                 .get("/schoolDistricts")
-        .then()
+                .then()
                 .log()
                 .body();
     }
@@ -53,19 +53,23 @@ public class rosterFormatTest {
         iwa = new IWebAuth();
         iwa.getToken();
 
-       Response response = given()
+        Response response = given()
                 .auth().preemptive().oauth2(iwa.accessIWebToken)
-               .spec(rspec)
-               .queryParam("stateCode", "OH")
-        .when()
+                .spec(rspec)
+                .queryParam("stateCode", "OH")
+                .when()
                 .get("/schools")
-        .then()
+                .then()
                 .log()
                 .body()
                 .and()
                 .extract()
                 .response();
         //Parse as JSON array and validate all "inactive" = false
+
+//        ArrayList<String > responseArray = new response.asString();
+//        JsonPath js = new JsonPath(responseArray);
+//        return js;
     }
 
     @Test(dataProvider = "School ID", dataProviderClass = Payload.class)
@@ -78,9 +82,9 @@ public class rosterFormatTest {
                 .spec(rspec)
                 .queryParam("stateCode", "OH")
                 .queryParam("schoolId", schoolId)
-        .when()
+                .when()
                 .get("/schools")
-        .then()
+                .then()
                 .log()
                 .all();
 //                .and()
