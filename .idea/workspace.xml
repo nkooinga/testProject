@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1023e43f-9ba2-4131-b97e-d93b48c08c41" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/chromedriver.exe" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/geckodriver.exe" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/API/authentication/PoctAuth.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/login/LoginTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UI/vaccinations/VaccinationsSummaryTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/School Nurse.iml" afterPath="$PROJECT_DIR$/School Nurse.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/rosterapi/ChangeGrade.java" afterPath="$PROJECT_DIR$/src/API/rosterapi/ChangeGrade.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/rosterapi/RosterPaginationTest.java" afterPath="$PROJECT_DIR$/src/API/rosterapi/RosterPaginationTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/API/rosterapi/rosterFormatTest.java" afterPath="$PROJECT_DIR$/src/API/rosterapi/rosterFormatTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UI/demographics/DemographicsTest.java" afterPath="$PROJECT_DIR$/src/UI/demographics/DemographicsTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UI/roster/RosterUI.java" afterPath="$PROJECT_DIR$/src/UI/roster/RosterUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/stc/roster/api/Payload.java" afterPath="$PROJECT_DIR$/src/main/com/stc/roster/api/Payload.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/stc/roster/api/ReusableMethods.java" afterPath="$PROJECT_DIR$/src/main/com/stc/roster/api/ReusableMethods.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/stc/roster/po/BaseSetup.java" afterPath="$PROJECT_DIR$/src/main/com/stc/roster/po/BaseSetup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/stc/roster/po/DataProviders.java" afterPath="$PROJECT_DIR$/src/main/com/stc/roster/po/DataProviders.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/stc/roster/po/LoginPO.java" afterPath="$PROJECT_DIR$/src/main/com/stc/roster/po/LoginPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/stc/roster/po/RosterPO.java" afterPath="$PROJECT_DIR$/src/main/com/stc/roster/po/RosterPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/properties/Properties.prop" afterPath="$PROJECT_DIR$/src/main/properties/Properties.prop" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/reporting/ExtentUtil.java" afterPath="$PROJECT_DIR$/src/main/reporting/ExtentUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/reporting/TestCaseWatcher.java" afterPath="$PROJECT_DIR$/src/main/reporting/TestCaseWatcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testng.xml" afterPath="$PROJECT_DIR$/testng.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -112,8 +92,8 @@
       <file leaf-file-name="DemographicsTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UI/demographics/DemographicsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="158" column="56" lean-forward="true" selection-start-line="158" selection-start-column="56" selection-end-line="158" selection-end-column="56" />
+            <state relative-caret-position="290">
+              <caret line="61" column="52" lean-forward="true" selection-start-line="61" selection-start-column="52" selection-end-line="61" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -913,7 +893,14 @@
       <option name="project" value="LOCAL" />
       <updated>1500651988497</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added logging and extentx server with mongodb">
+      <created>1501218484678</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1501218484679</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1037,7 +1024,8 @@
     <MESSAGE value="Refactored reporting. Added testng.xml and refactored tests" />
     <MESSAGE value="Refactored reporting. Added login test, demographics tests." />
     <MESSAGE value="Added auth capabilities for API tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added auth capabilities for API tests" />
+    <MESSAGE value="Added logging and extentx server with mongodb" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added logging and extentx server with mongodb" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1169,6 +1157,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1176,6 +1165,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="25" column="23" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1183,6 +1173,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="42" column="29" lean-forward="true" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1190,6 +1183,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1197,6 +1193,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="334" lean-forward="false" selection-start-line="0" selection-start-column="334" selection-end-line="0" selection-end-column="334" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1204,6 +1201,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="577">
           <caret line="119" column="0" lean-forward="true" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1211,6 +1209,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2821">
           <caret line="188" column="1" lean-forward="false" selection-start-line="188" selection-start-column="1" selection-end-line="188" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1218,6 +1217,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1232,6 +1232,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="29" column="11" lean-forward="false" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1301,6 +1302,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="566">
           <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="2" selection-end-line="76" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1373,8 +1375,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UI/demographics/DemographicsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="158" column="56" lean-forward="true" selection-start-line="158" selection-start-column="56" selection-end-line="158" selection-end-column="56" />
+        <state relative-caret-position="290">
+          <caret line="61" column="52" lean-forward="true" selection-start-line="61" selection-start-column="52" selection-end-line="61" selection-end-column="52" />
           <folding />
         </state>
       </provider>

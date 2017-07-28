@@ -13,8 +13,6 @@ import reporting.ExtentUtil;
 
 import java.io.IOException;
 
-import static reporting.ExtentUtil.fetchTest;
-
 public class DemographicsTest extends BaseSetup {
     WebDriver driver;
     LoginPO lpo;
@@ -56,7 +54,7 @@ public class DemographicsTest extends BaseSetup {
         dpo = new DemographicsPO(driver);
         dpo.openStudentDemo();
         dpo.getEditBtn().click();
-        eu.fetchTest().log(Status.INFO, "Editing Student Information fields";
+        eu.fetchTest().log(Status.INFO, "Editing Student Information fields");
         dpo.getPatientFirstName().clear();
         dpo.getPatientFirstName().sendKeys(firstName);
         eu.fetchTest().log(Status.INFO, firstName);
