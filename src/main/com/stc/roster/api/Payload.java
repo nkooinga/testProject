@@ -20,9 +20,17 @@ public class Payload {
 
     @DataProvider(name = "School ID")
     public static Object[][] schoolId() {
-            return new Object[][]{
-                    {"1"}
-                    ,{"65837"}};
+        return new Object[][]{
+                {"1"}
+                ,{"65837"}};
+    }
+
+    @DataProvider(name = "Credentials")
+    public static Object[][] credentials() {
+        return new Object[][]{
+                {"user1, pw1"}
+                ,{"user2, pw2"}
+                ,{"user3, pw3"}};
     }
 
 //    @DataProvider(name = "School Grades")

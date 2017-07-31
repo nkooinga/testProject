@@ -1,5 +1,6 @@
 package roster;
 
+import com.aventstack.extentreports.Status;
 import com.stc.roster.po.BaseSetup;
 import com.stc.roster.po.DataProviders;
 import com.stc.roster.po.LoginPO;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import reporting.ExtentUtil;
 
 import java.io.IOException;
 
@@ -19,6 +21,7 @@ public class RosterUI extends BaseSetup {
     WebDriver driver;
     LoginPO lpo;
     RosterPO rpo;
+    ExtentUtil eu;
 
     @BeforeClass
     public void setUp() throws IOException {
@@ -54,14 +57,20 @@ public class RosterUI extends BaseSetup {
 //        rpo.getStudentSearch().clear();
 //        rpo.getStudentSearch().sendKeys(studentSearch);
         rpo.conditionalStatusSelect();
+        eu.fetchTest().log(Status.INFO, "Searching by conditional status.");
         rpo.getStudentSearch().clear();
         rpo.getStudentSearch().sendKeys(studentSearch);
+        eu.fetchTest().log(Status.INFO, studentSearch);
         rpo.notCompleteStatusSelect();
+        eu.fetchTest().log(Status.INFO, "Searching by NOT complete status.");
         rpo.getStudentSearch().clear();
         rpo.getStudentSearch().sendKeys(studentSearch);
+        eu.fetchTest().log(Status.INFO, studentSearch);
         rpo.completeStatusSelect();
+        eu.fetchTest().log(Status.INFO, "Searching by complete status.");
         rpo.getStudentSearch().clear();
         rpo.getStudentSearch().sendKeys(studentSearch);
+        eu.fetchTest().log(Status.INFO, studentSearch);
         rpo.anyStatusSelect();
         rpo.getStudentSearch().clear();
 
@@ -81,14 +90,20 @@ public class RosterUI extends BaseSetup {
 //        rpo.getStudentSearch().sendKeys(studentSearch);
 //        rpo.optionalStatusSelect();
         rpo.conditionalStatusSelect();
+        eu.fetchTest().log(Status.INFO, "Searching by conditional status.");
         rpo.getStudentSearch().clear();
         rpo.getStudentSearch().sendKeys(studentSearch);
+        eu.fetchTest().log(Status.INFO, studentSearch);
         rpo.notCompleteStatusSelect();
+        eu.fetchTest().log(Status.INFO, "Searching by NOT complete status.");
         rpo.getStudentSearch().clear();
         rpo.getStudentSearch().sendKeys(studentSearch);
+        eu.fetchTest().log(Status.INFO, studentSearch);
         rpo.completeStatusSelect();
+        eu.fetchTest().log(Status.INFO, "Searching by complete status.");
         rpo.getStudentSearch().clear();
         rpo.getStudentSearch().sendKeys(studentSearch);
+        eu.fetchTest().log(Status.INFO, studentSearch);
         rpo.anyStatusSelect();
         rpo.getStudentSearch().clear();
     }
@@ -107,18 +122,22 @@ public class RosterUI extends BaseSetup {
     @Test(priority = 4)
     public void addNewStudent() {
         rpo = new RosterPO(driver);
+        eu.fetchTest().log(Status.INFO, "Adding new student.");
         rpo.getAddNewStudentBtn().click();
     }
 
     @Test(priority = 4)
     public void updatedRoster() {
         rpo = new RosterPO(driver);
+        eu.fetchTest().log(Status.INFO, "Updating Roster.");
         rpo.getUpdateRosterBtn().click();
+
     }
 
     @Test(priority = 5)
     public void nextRosterListPage() {
         rpo = new RosterPO(driver);
+        eu.fetchTest().log(Status.INFO, "Selecting next roster page.");
         rpo.getNextRosterPage().click();
     }
 

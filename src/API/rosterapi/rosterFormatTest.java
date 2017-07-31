@@ -1,13 +1,16 @@
 package rosterapi;
 
 import authentication.IWebAuth;
+import com.aventstack.extentreports.Status;
 import com.stc.roster.api.Payload;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.AuthenticationSpecification;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import reporting.ExtentUtil;
 
 import static io.restassured.RestAssured.given;
 
@@ -20,6 +23,7 @@ public class rosterFormatTest {
     RequestSpecBuilder build;
     AuthenticationSpecification login;
     IWebAuth iwa;
+    ExtentUtil eu;
 
 
     @BeforeClass
@@ -65,17 +69,20 @@ public class rosterFormatTest {
                 .and()
                 .extract()
                 .response();
-        //Parse as JSON array and validate all "inactive" = false
 
-//        ArrayList<String > responseArray = new response.asString();
-//        JsonPath js = new JsonPath(responseArray);
-//        return js;
+        String json = response.asString();
+        JsonPath jp = new JsonPath(json);
+//        assertEquals();
+
+
     }
 
     @Test(dataProvider = "School ID", dataProviderClass = Payload.class)
     public void schoolIdSearch(String schoolId) {
         iwa = new IWebAuth();
         iwa.getToken();
+
+        eu.fetchTest().log(Status.INFO, schoolId);
 
         given()
                 .auth().preemptive().oauth2(iwa.accessIWebToken)

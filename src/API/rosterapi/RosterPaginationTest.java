@@ -1,12 +1,14 @@
 package rosterapi;
 
 import authentication.KeycloakRestApiManager;
+import com.aventstack.extentreports.Status;
 import com.stc.roster.api.Payload;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.AuthenticationSpecification;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import reporting.ExtentUtil;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -23,6 +25,7 @@ public class RosterPaginationTest {
     RequestSpecBuilder build;
     AuthenticationSpecification login;
     KeycloakRestApiManager kram;
+    ExtentUtil eu;
 
 
     @BeforeClass
@@ -50,6 +53,9 @@ public class RosterPaginationTest {
     @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
     public void happyRosterPageValues(String pageNum, String pageValues) {
 
+        eu.fetchTest().log(Status.INFO, pageNum);
+        eu.fetchTest().log(Status.INFO, pageValues);
+
         given()
                 .auth().preemptive().oauth2(kram.accessToken)
                 .spec(rspec)
@@ -70,6 +76,9 @@ public class RosterPaginationTest {
     @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
     public void negRosterPageValues(String pageNum, String pageValues) {
 
+        eu.fetchTest().log(Status.INFO, pageNum);
+        eu.fetchTest().log(Status.INFO, pageValues);
+
         given()
                 .auth().preemptive().oauth2(kram.accessToken)
                 .spec(rspec)
@@ -85,6 +94,9 @@ public class RosterPaginationTest {
 
     @Test (dataProvider = "rosterPaginationValues", dataProviderClass = Payload.class)
     public void invRosterPageValues(String pageNum, String pageValues) {
+
+        eu.fetchTest().log(Status.INFO, pageNum);
+        eu.fetchTest().log(Status.INFO, pageValues);
 
         given()
                 .auth().preemptive().oauth2(kram.accessToken)
@@ -160,6 +172,7 @@ public class RosterPaginationTest {
                 .then()
                 .assertThat()
                 .body(".values.lastName[0]".substring(1), equalTo("Test"));
+
     }
 
 //    @Test

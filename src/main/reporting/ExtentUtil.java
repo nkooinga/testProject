@@ -8,10 +8,20 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class ExtentUtil {
+
+    private final static String getDateTime() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd_HHmm");
+        df.setTimeZone(TimeZone.getTimeZone("US/Arizona"));
+        return df.format(new Date());
+    }
 
     public static ExtentReports extentReports = null;
     static Map<Integer,ExtentTest> extentTestMap = new HashMap<Integer, ExtentTest>();
@@ -26,7 +36,8 @@ public class ExtentUtil {
         // ExtentX Reporter
         ExtentXReporter extentXReporter = new ExtentXReporter("localhost");
         extentXReporter.config().setServerUrl("http://localhost:1337");
-        extentXReporter.config().setReportName("ExtentXReport");
+        extentXReporter.config().setReportName(getDateTime());
+        extentXReporter.config().setProjectName("School Nurse");
 
         extentReports = new ExtentReports();
         extentReports.attachReporter(extentHtmlReporter, extentXReporter);

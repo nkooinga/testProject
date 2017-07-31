@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<!--<suite name="Roster API Tests">-->
-    <!--<listeners>-->
-        <!--<listener class-name="reporting.TestCaseWatcher"/>-->
-    <!--</listeners>-->
-    <!--<test name="Pagination Test" allow-return-values="true">-->
-        <!--<classes>-->
-            <!--<class name="rosterapi.RosterPaginationTest" />-->
-        <!--</classes>-->
-    <!--</test>-->
-<!--</suite>-->
-<suite name="Roster UI Tests">
+<suite name="Roster API Tests">
     <listeners>
         <listener class-name="reporting.TestCaseWatcher"/>
     </listeners>
+    <test name="Pagination Test" allow-return-values="true">
+        <classes>
+            <class name="rosterapi.RosterPaginationTest" />
+        </classes>
+    </test>
+    <test name="School Test" allow-return-values="true">
+        <classes>
+            <class name="rosterapi.rosterFormatTest"/>
+        </classes>
+    </test>
+<!--</suite>-->
+<!--<suite name="Roster UI Tests">-->
+    <!--<listeners>-->
+        <!--<listener class-name="reporting.TestCaseWatcher"/>-->
+    <!--</listeners>-->
     <!--<test name="validLogin" allow-return-values="true">-->
         <!--<classes>-->
             <!--<class name="Login.LoginTest" />-->
@@ -24,11 +29,11 @@
             <class name="demographics.DemographicsTest"/>
         </classes>
     </test>
-    <!--<test name="Roster Page Test" allow-return-values="true">-->
-        <!--<classes>-->
-            <!--<class name="roster.RosterUI"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="Roster Page Test" allow-return-values="true">
+        <classes>
+            <class name="roster.RosterUI"/>
+        </classes>
+    </test>
 </suite>
 
 

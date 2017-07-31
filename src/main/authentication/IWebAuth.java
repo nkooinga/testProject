@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 
 public class IWebAuth {
 
+    //Blade Keycloak
     private static String KEYCLOAK_URL = "https://kcuat.stchome.com/auth/realms/sn/protocol/openid-connect/token";
     private static String KEYCLOAK_REALM = "sn";
     private static String KEYCLOAK_SN_IWEB_USER = "nick_sn";
